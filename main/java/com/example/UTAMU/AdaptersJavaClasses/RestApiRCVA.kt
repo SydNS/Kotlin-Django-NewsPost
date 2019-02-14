@@ -30,8 +30,8 @@ class RestApiRCVA(
     ) {
         val forRest: ForRest = forRests[position]
         holder.post.setText(forRest.post)
-        holder.title.setText(forRest.post)
-        holder.author.setText(forRest.post)
+        holder.title.setText(forRest.title)
+        holder.author.setText(forRest.author)
     }
 
     override fun getItemCount(): Int {

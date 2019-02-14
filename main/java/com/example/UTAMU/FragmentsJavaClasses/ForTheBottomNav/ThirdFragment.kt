@@ -16,11 +16,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
+import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.UTAMU.AdaptersJavaClasses.RestApiRCVA
 import com.example.UTAMU.DataObjects.ForRest
 import com.example.UTAMU.R
+import kotlinx.android.synthetic.main.frag3.*
 import org.json.JSONException
 import java.util.*
 
@@ -43,49 +45,40 @@ class ThirdFragment : Fragment() {
 //        final Button showData = (Button) view.findViewById(R.id.showData);
         val recyclerView =
             view.findViewById<View>(R.id.profName) as RecyclerView
-        //        sqLiteDatabaseClass.readData();
-//        profName.append("wsaswsws");
-//        profName.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                if (ContextCompat.checkSelfPermission(getActivity(),
-//                        Manifest.permission.INTERNET) == PackageManager.PERMISSION_GRANTED) {
-//                    Toast.makeText(getActivity(), "Granted already", Toast.LENGTH_SHORT).show();
-//                } else {
-//                    Toast.makeText(getActivity(), "Denied ", Toast.LENGTH_SHORT).show();
-//                    internetRequestPermission();
-//                }
-//            }
-//        });
+
         val schoolslayoutManager =
             LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         requestQueue = Volley.newRequestQueue(context)
         val jsonObjectRequest =
-            JsonObjectRequest(
+            JsonArrayRequest(
                 Request.Method.GET,
                 ROOT_URL,
                 null,
                 Response.Listener { response ->
                     try {
-                        val jsonArray = response.getJSONArray("List of Posts")
-                        for (i in 0 until jsonArray.length()) {
-                            val jsonObject = jsonArray.getJSONObject(i)
+
+//                        val jsonArray = response.getJSONArray("List of Posts")
+                        for (i in 0 until response.length()) {
+                            val jsonObject = response.getJSONObject(i)
                             val author =
-                                jsonObject.getString("author") as String
+                                jsonObject.getString("post_title") as String
                             val title =
-                                jsonObject.getString("title") as String
+                                jsonObject.getString("post_body") as String
                             val post =
-                                jsonObject.getString("subtitle") as String
+                                jsonObject.getString("posting_date") as String
                             forRestArrayList.add(ForRest(title, post, author))
                             val restApiRCVA =
                                 activity?.let { RestApiRCVA(it, forRestArrayList) }
                             recyclerView.adapter = restApiRCVA
                             recyclerView.layoutManager = schoolslayoutManager
                         }
+                        Toast.makeText(activity, "response.length()", Toast.LENGTH_SHORT)
+                            .show()
+//                        tvutamuapi.text= jsonArray.toString()
                     } catch (e: JSONException) {
 //                                    e.printStackTrace();
 //                                    profName.setText(""+e);
-                        Toast.makeText(activity, "error ocurred$e", Toast.LENGTH_SHORT)
+                        Toast.makeText(activity, "error ocurred $e", Toast.LENGTH_SHORT)
                             .show()
                         println(e)
                     }
@@ -97,6 +90,7 @@ class ThirdFragment : Fragment() {
                         Toast.LENGTH_SHORT
                     ).show()
                 })
+
         requestQueue.add(jsonObjectRequest)
         return view
     }
@@ -134,7 +128,7 @@ class ThirdFragment : Fragment() {
         grantResults: IntArray
     ) {
         if (requestCode == INTERNET_PERMISSION_CODE) {
-            if (grantResults.size > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(activity, "Permission Granted", Toast.LENGTH_SHORT).show()
             } else {
                 Toast.makeText(activity, "Permission Granted", Toast.LENGTH_SHORT).show()
@@ -143,8 +137,8 @@ class ThirdFragment : Fragment() {
     }
 
     companion object {
-        private const val ROOT_URL = "http://192.168.43.87:5000/WebIntApi/allposts/"
+        private const val ROOT_URL = "http://192.168.43.87:5000/utamuapi/newsposts"
 //        private const val ROOT_URL = "http://192.168.43.87:5000/api_posts"
-        private const val REGISTER = "http://192.168.43.87/Android/v1/user.php"
+//        private const val REGISTER = "http://192.168.43.87/Android/v1/user.php"
     }
 }
