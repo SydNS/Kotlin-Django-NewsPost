@@ -4,9 +4,9 @@ import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
 
-class Uerdetails(val context: Context) {
-    private val PREFS_NAME = "loginprefs"
-    private val sharedPref: SharedPreferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+class RememberMe(val context: Context) {
+    private val REMNAME = "remember_me"
+    private val sharedPref: SharedPreferences = context.getSharedPreferences(REMNAME, Context.MODE_PRIVATE)
     private val editor: SharedPreferences.Editor = sharedPref.edit()
 
     @SuppressLint("CommitPrefEdits")

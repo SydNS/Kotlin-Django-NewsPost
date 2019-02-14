@@ -48,6 +48,7 @@ class WalkThrough : AppCompatActivity() {
             startActivity(Intent(this, SignupLogin::class.java))
             finish()
         }
+
         walkthroughvp.registerOnPageChangeCallback(object : OnPageChangeCallback() {
             override fun onPageScrolled(
                 position: Int,

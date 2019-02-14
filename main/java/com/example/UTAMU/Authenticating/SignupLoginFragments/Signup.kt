@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.viewpager.widget.ViewPager
 import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
 import com.example.UTAMU.R
+import com.google.android.material.tabs.TabLayout
 import com.google.android.material.textfield.TextInputLayout
 import org.json.JSONException
 import org.json.JSONObject
@@ -20,13 +22,17 @@ import org.json.JSONObject
 class Signup : Fragment() {
 
     var signup_uname: TextInputLayout? = null
+    var signup_uname2: TextInputLayout? = null
     var signup_uemail: TextInputLayout? = null
+    var signup_residence: TextInputLayout? = null
     var signup_upassword1: TextInputLayout? = null
     var signup_upassword2: TextInputLayout? = null
-    var uname: String? = null
+    var firstname: String? = null
+    var lastname: String? = null
     var upassd: String? = null
     var upassd2: String? = null
     var uemail: String? = null
+    var residence: String? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,41 +40,71 @@ class Signup : Fragment() {
     ): View? {
         val view: View = inflater.inflate(R.layout.signup, container, false)
         signup_uname = view.findViewById<View>(R.id.signup_uname) as TextInputLayout
+        signup_uname2 = view.findViewById<View>(R.id.signup_uname2) as TextInputLayout
         signup_uemail = view.findViewById<View>(R.id.signup_uemail) as TextInputLayout
+        signup_residence = view.findViewById<View>(R.id.signup_residence) as TextInputLayout
         signup_upassword1 =
             view.findViewById<View>(R.id.signup_upassword1) as TextInputLayout
         signup_upassword2 =
             view.findViewById<View>(R.id.signup_upassword2) as TextInputLayout
         val signupButton =
             view.findViewById<View>(R.id.signupButton) as Button
+
+        val tabLayout = activity!!.findViewById(R.id.tabs) as TabLayout
+        val viewPager = activity?.findViewById<View>(R.id.viewLoginandSignup) as ViewPager
+
         signupButton.setOnClickListener {
-            //                if (upassd==upassd2){
-            uname = signup_uname!!.editText!!.text.toString()
+
+            firstname = signup_uname!!.editText!!.text.toString()
+            lastname = signup_uname2!!.editText!!.text.toString()
             upassd = signup_upassword1!!.editText!!.text.toString()
             upassd2 = signup_upassword2!!.editText!!.text.toString()
             uemail = signup_uemail!!.editText!!.text.toString()
-            posting(uname!!, upassd!!, uemail!!)
-            //                getChildFragmentManager().beginTransaction().replace(R.id.signuplayout,new Login()).commit();
+            residence = signup_residence!!.editText!!.text.toString()
 
-//                    } else {
-//                    Toast.makeText(getActivity(), "Passwords not matching", Toast.LENGTH_SHORT).show();
+            if (firstname!!.isNotEmpty() or lastname!!.isNotEmpty() or residence!!.isNotEmpty() or upassd!!.isNotEmpty() or upassd2!!.isNotEmpty()) {
+                if (upassd == upassd2) {
+                    posting(firstname!!, lastname!!, uemail!!, residence!!, upassd!!, upassd2!!)
+                } else {
+                    Toast.makeText(activity, "Passwords dont match", Toast.LENGTH_SHORT).show()
+                }
+//                getChildFragmentManager().beginTransaction().replace(R.id.signuplayout, Login())
+//                    .commit()
+//                tabLayout.getTabAt(0)
+                tabLayout.setScrollPosition(0, 0F, true)
+                viewPager.currentItem = 0
+
+            } else {
+                Toast.makeText(activity, "Fill in All the Fields", Toast.LENGTH_SHORT).show()
+            }
         }
         return view
     }
 
+
     private fun posting(
-        uname: String,
+        firstname: String,
+        lastname: String,
+        uemail: String,
+        residence: String,
         upasword: String,
-        uemail: String
+        upasword2: String
     ) {
-        var requestQueue = Volley.newRequestQueue(activity)
+        val requestQueue = Volley.newRequestQueue(activity)
         val parameters = JSONObject()
         try {
-            parameters.put("username", uname)
-            parameters.put("password", upasword)
-            parameters.put("email", uemail)
+
+            parameters.put("lastname", firstname)
+            parameters.put("firstname", lastname)
+            parameters.put("password_1", upasword)
+            parameters.put("password2", upasword2)
+            parameters.put("residence", residence)
+            parameters.put("Uemail", uemail)
+
         } catch (e: JSONException) {
             e.printStackTrace()
+            Toast.makeText(activity, "response.toString()", Toast.LENGTH_LONG).show()
+
         }
         val jsonObjReq =
             JsonObjectRequest(
@@ -79,11 +115,23 @@ class Signup : Fragment() {
                     Toast.makeText(activity, response.toString(), Toast.LENGTH_LONG).show()
                     //                        startActivity(new Intent(getActivity(), MainActivity.class));
                 },
-                Response.ErrorListener { })
+                Response.ErrorListener {
+                    Toast.makeText(activity, "Connection Error", Toast.LENGTH_SHORT)
+                        .show()
+                })
         requestQueue.add(jsonObjReq)
     }
 
     companion object {
-        private const val ROOT_URL_POST = "http://192.168.43.87:5000/WebIntApi/users/"
+        private const val ROOT_URL_POST = "http://192.168.43.87:5000/utamuapi/registration/"
     }
 }
+
+//    {
+//        "firstname": "marshall",
+//        "lastname": "eriksen",
+//        "Uemail": "marshall@himym.com",
+//        "residence": "NYC",
+//        "password_1":"marshall",
+//        "password2":"marshall"
+//    }

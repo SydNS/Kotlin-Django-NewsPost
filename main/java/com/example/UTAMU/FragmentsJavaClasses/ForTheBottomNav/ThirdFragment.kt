@@ -13,6 +13,7 @@ import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.android.volley.AuthFailureError
 import com.android.volley.Request
 import com.android.volley.RequestQueue
 import com.android.volley.Response
@@ -22,8 +23,12 @@ import com.android.volley.toolbox.Volley
 import com.example.UTAMU.AdaptersJavaClasses.RestApiRCVA
 import com.example.UTAMU.DataObjects.ForRest
 import com.example.UTAMU.R
+import com.example.UTAMU.SharePreforproject.Uerdetails
 import kotlinx.android.synthetic.main.frag3.*
+import okhttp3.internal.http.RequestLine.get
+import org.json.JSONArray
 import org.json.JSONException
+import org.json.JSONObject
 import java.util.*
 
 class ThirdFragment : Fragment() {
@@ -31,15 +36,20 @@ class ThirdFragment : Fragment() {
 
     //
     private val INTERNET_PERMISSION_CODE = 1
-//    var requestQueue: RequestQueue? = null
+
+    //    var requestQueue: RequestQueue? = null
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-    var requestQueue: RequestQueue? = null
+        val unamepref= activity?.let { Uerdetails(it) }
+//        val unamefrompref: String? = unamepref?.getValueString("KEY_NAME").toString()
+        val tokenfrompref: String = unamepref?.getValueString("KEY_TOKEN").toString()
 
-    val view: View = inflater.inflate(R.layout.frag3, container, false)
+        var requestQueue: RequestQueue? = null
+
+        val view: View = inflater.inflate(R.layout.frag3, container, false)
         val forRestArrayList: ArrayList<ForRest> = ArrayList<ForRest>()
         //        final TextView profName = (TextView) view.findViewById(R.id.profName);
 //        final Button showData = (Button) view.findViewById(R.id.showData);
@@ -49,50 +59,65 @@ class ThirdFragment : Fragment() {
         val schoolslayoutManager =
             LinearLayoutManager(context, RecyclerView.VERTICAL, false)
         requestQueue = Volley.newRequestQueue(context)
-        val jsonObjectRequest =
-            JsonArrayRequest(
-                Request.Method.GET,
-                ROOT_URL,
-                null,
-                Response.Listener { response ->
-                    try {
 
-//                        val jsonArray = response.getJSONArray("List of Posts")
-                        for (i in 0 until response.length()) {
-                            val jsonObject = response.getJSONObject(i)
-                            val author =
-                                jsonObject.getString("post_title") as String
-                            val title =
-                                jsonObject.getString("post_body") as String
-                            val post =
-                                jsonObject.getString("posting_date") as String
-                            forRestArrayList.add(ForRest(title, post, author))
-                            val restApiRCVA =
-                                activity?.let { RestApiRCVA(it, forRestArrayList) }
-                            recyclerView.adapter = restApiRCVA
-                            recyclerView.layoutManager = schoolslayoutManager
-                        }
-                        Toast.makeText(activity, "response.length()", Toast.LENGTH_SHORT)
-                            .show()
-//                        tvutamuapi.text= jsonArray.toString()
-                    } catch (e: JSONException) {
-//                                    e.printStackTrace();
-//                                    profName.setText(""+e);
-                        Toast.makeText(activity, "error ocurred $e", Toast.LENGTH_SHORT)
-                            .show()
-                        println(e)
+        val credentials = tokenfrompref
+        // Make a volley custom json object request with basic authentication
+        val request = CustomJsonObjectRequestBasicAuth(Request.Method.GET, ROOT_URL, null,
+            Response.Listener { response ->
+                try {
+                    for (i in 0 until response.length()) {
+                        val jsonObject = response.getJSONObject(i)
+                        val author =
+                            jsonObject.getString("post_title") as String
+                        val title =
+                            jsonObject.getString("post_body") as String
+                        val post =
+                            jsonObject.getString("posting_date") as String
+                        forRestArrayList.add(ForRest(title, post, author))
+                        val restApiRCVA =
+                            activity?.let { RestApiRCVA(it, forRestArrayList) }
+                        recyclerView.adapter = restApiRCVA
+                        recyclerView.layoutManager = schoolslayoutManager
                     }
-                },
-                Response.ErrorListener { error ->
-                    Toast.makeText(
-                        context,
-                        "got $error",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                })
+                    Toast.makeText(activity, "response.length()", Toast.LENGTH_SHORT)
+                        .show()
 
-        requestQueue.add(jsonObjectRequest)
+                } catch (e: Exception) {
+                    Toast.makeText(activity, "error ocurred $e", Toast.LENGTH_SHORT)
+                        .show()
+                    println(e)
+
+                }
+            }, Response.ErrorListener {
+                Toast.makeText(activity, "error ocurred ", Toast.LENGTH_SHORT)
+                    .show()
+                println("e")
+            }, credentials
+        )
+        requestQueue.add(request)
+//        requestQueue.add(jsonObjectRequest)
+
         return view
+    }
+
+    // Class to make a volley json object request with basic authentication
+class CustomJsonObjectRequestBasicAuth(
+        method: Int, url: String,
+        jsonArray: JSONArray?,
+        listener: Response.Listener<JSONArray>,
+        errorListener: Response.ErrorListener,
+        credential_token: String
+    ) : JsonArrayRequest(method, url, jsonArray, listener, errorListener) {
+
+        private var mCredentials: String = credential_token
+
+        @Throws(AuthFailureError::class)
+        override fun getHeaders(): Map<String, String> {
+            val headers = HashMap<String, String>()
+            headers["Content-Type"] = "application/json"
+            headers["Authorization"] = "Token $mCredentials"
+            return headers
+        }
     }
 
     private fun internetRequestPermission() {

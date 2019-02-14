@@ -27,6 +27,7 @@ class Login : Fragment() {
     var loginpasswd: TextInputLayout? = null
     var luname: String? = null
     var lpasswd: String? = null
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -42,8 +43,7 @@ class Login : Fragment() {
             val uname = loginuname!!.editText!!.text.toString()
             val upasswd = loginpasswd!!.editText!!.text.toString()
             posting(uname, upasswd)
-            val unamepref= activity?.let { it1 -> Uerdetails(it1) }
-            unamepref?.save("Username",uname)
+
             if (rememberme.isChecked) {
                 Toast.makeText(activity, "You'll be remembered", Toast.LENGTH_SHORT).show()
             }
@@ -70,7 +70,9 @@ class Login : Fragment() {
                     try {
                         val loggedin = response.getString("token") as String
                         if (loggedin.isNotEmpty()) {
-                            Toast.makeText(activity, loggedin, Toast.LENGTH_SHORT).show()
+                            Toast.makeText(activity, "loggedin", Toast.LENGTH_SHORT).show()
+                            val unamepref= activity?.let { it1 -> Uerdetails(it1) }
+                            unamepref?.save(uname,loggedin)
                             startActivity(Intent(activity, HomeActivity::class.java))
                             activity?.finish()
                         }

@@ -33,12 +33,13 @@ class MainActivity : AppCompatActivity(),
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main3)
         //getting the username from the login prefernces to set the ActionBar Title
-        var unamepref= Uerdetails(this)
-        var unamefrompref: String? = unamepref.getValueString("Username")
+        val unamepref= Uerdetails(this)
+        val unamefrompref: String? = unamepref.getValueString("Username")
+
         supportActionBar?.title = unamefrompref
         forRestArrayList = ArrayList()
         recyclerView = findViewById<View>(R.id.profName) as RecyclerView
-        var requestQueue = Volley.newRequestQueue(this@MainActivity)
+        val requestQueue = Volley.newRequestQueue(this@MainActivity)
         val jsonArrayRequest =
             JsonArrayRequest(
                 Request.Method.GET,
