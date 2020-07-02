@@ -41,7 +41,7 @@
             android:parentActivityName=".Activities.MainActivity" />
         <activity android:name=".Activities.VolKo" />
         <activity android:name=".Activities.AnotherActivity" />
-        <activity android:name=".Posts.PostDetails" android:theme="@style/Theme.AppCompat.NoActionBar"
+        <activity android:name=".Posts.PostDetails" android:theme="@style/Theme.MaterialComponents.NoActionBar"
             android:parentActivityName=".Posts.MainActivity"/>
         <activity android:name=".Posts.AddPost" />
         <activity android:name=".Posts.Detail" />

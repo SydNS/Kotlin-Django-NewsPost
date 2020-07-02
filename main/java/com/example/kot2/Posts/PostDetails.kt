@@ -35,9 +35,10 @@ class PostDetails : AppCompatActivity() {
         val intentWithPostId = intent
         supportActionBar?.title= intentWithPostId.extras!!.getString("postTitle")
         detes.text= intentWithPostId.extras!!.getString("postBody")
+
         val ROOT_URL =
             "http://192.168.43.87:5000/WebIntApi/allposts/${intentWithPostId.extras!!.getInt("postId")}"
-        var requestQueue = Volley.newRequestQueue(applicationContext)
+        val requestQueue = Volley.newRequestQueue(applicationContext)
         val jsonObjectRequestt =
             JsonObjectRequest(
                 Request.Method.GET, ROOT_URL, null,

@@ -6,6 +6,9 @@
     android:background="@color/cardText"
     tools:context=".Posts.MainActivity">
 
+
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/profName"
         android:layout_width="match_parent"
