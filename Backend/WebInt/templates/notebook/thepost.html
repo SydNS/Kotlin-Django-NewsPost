@@ -1,0 +1,246 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>{{ creator }}</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+    <!-- Custom fonts for this template -->
+    <link href="{% static 'vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+    <link href='https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic' rel='stylesheet'
+          type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800'
+          rel='stylesheet' type='text/css'>
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'css/clean-blog.min.css'%}" rel="stylesheet">
+
+</head>
+
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'index' %}">{{ creator }}</a>
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+                data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
+                aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}">Home</a>
+                </li>
+                <!--                    <li class="nav-item">-->
+                <!--                        <a class="nav-link" href="{% url 'index' %}">About</a>-->
+                <!--                    </li>-->
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'makepost' %}">Create Post</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}">News</a>
+                </li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('{% static " img
+/nb5.jpg" %}'); background-position: right top;">
+
+<div class="overlay"></div>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <div class="site-heading">
+                <h1>
+                    {{ post.title }}</h1>
+                <span class="subheading">{{ field }}</span>
+            </div>
+        </div>
+    </div>
+</div>
+</header>
+
+<!-- Main Content -->
+<hr>
+<!-- Post Content -->
+<article style="margin:-12%;">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8  mx-auto">
+
+                <h2 class="section-heading"></h2>
+
+
+                <blockquote class="blockquote" style="color:white;">{{ post.subtitle }}</blockquote>
+
+                <p class="card">{{ post.post|linebreaksbr }}</p>
+
+                <p><small class="">{{ post.creationDate }}</small></p>
+
+                <!--{% with comments.count as total_comments %}-->
+
+                <div class="card row ">
+                    <div class="card-body">
+
+                          <h6>
+                    {{ comments.count }} comment{{ comments|pluralize }}
+                </h6>
+                <!--{% endwith %}-->
+
+                <div >
+                    {% for comment in comments %}
+                    <div class="comment" style="border-width:2px;border-color:white;border-style: groove;border-radius:20px;padding:3%;">
+                        <p class="info" >
+                            Comment {{ forloop.counter }} by {{ comment.name }}
+                            {{ comment.created }}
+                        </p>
+                        {{ comment.body|linebreaks }}
+                    </div>
+                    <hr>
+                    {% empty %}
+                    <p>There are no comments yet.</p>
+
+                    {% endfor %}
+                </div>
+
+                    </div>
+                    {% if new_comment %}
+                        <h2>Your comment has been added.</h2>
+                        {% else %}
+                        <h2>Add a new comment</h2>
+                        <form method="post">
+                            {{ comment_form.as_p }}
+                            {% csrf_token %}
+                            <p><input type="submit" value="Add comment"></p>
+                        </form>
+                        {% endif %}
+
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+</article>
+
+<hr/>
+
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-10 mx-auto">
+                <ul class="list-inline text-center">
+                    <li class="list-inline-item">
+                        <a href="#">
+                                <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-twitter fa-stack-1x fa-inverse"></i>
+              </span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">
+                                <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-facebook-f fa-stack-1x fa-inverse"></i>
+              </span>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="#">
+                                <span class="fa-stack fa-lg">
+                <i class="fas fa-circle fa-stack-2x"></i>
+                <i class="fab fa-github fa-stack-1x fa-inverse"></i>
+              </span>
+                        </a>
+                    </li>
+                </ul>
+                <p class="copyright text-muted">Copyright &copy; Sydney Nsiimbe Doing Django for backend and Android for
+                    the frontend </p>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap core JavaScript -->
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+<!-- Custom scripts for this template -->
+<script src="{% static 'js/clean-blog.min.js'%}"></script>
+
+
+<!--modal for sharing a post-->
+
+<div class="modal" id="myModal">
+    <div class="modal-dialog col-8">
+        <div class="modal-content" style="opacity: 0.9;">
+
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title justify-center">Share Post Now </h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <!-- Modal body -->
+            <div class="col-lg-12 col-md-10 mx-auto">
+
+                <form action="{% url 'sharepost' post.id %}" class="was-validated" method="POST">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="pwd">To:</label> {{ fm.to }}
+                        <div class="valid-feedback">Valid.</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="Title">Name </label>{{ fm.name }}
+                        <div class="valid-feedback">Valid.</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pwd">Email:</label>{{ fm.email }}
+                        <div class="valid-feedback">Valid.</div>
+                    </div>
+
+                    <div class="form-group ">
+                        <label for="pwd">Comments</label>{{ fm.comments }}
+                        <div class="valid-feedback">Valid.</div>
+                    </div>
+                    <button type="submit" class="btn btn-success rounded" data-toggle="myModal" data-target="#myModal"
+                            style="margin-left:35%;margin-bottom:10%;width: 30%">Send
+                    </button>
+
+
+                </form>
+
+            </div>
+
+            <!-- Modal footer -->
+
+        </div>
+    </div>
+</div>
+
+</div>
+
+</body>
+
+</html>
