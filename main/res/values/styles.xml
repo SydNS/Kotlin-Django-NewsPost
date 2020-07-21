@@ -1,0 +1,97 @@
+<resources>
+    <!-- Base application theme. -->
+<!--    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
+<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+<!--        <item name="colorPrimary">@color/colorPrimary</item>-->
+<!--        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+<!--        <item name="colorAccent">@color/colorAccent</item>-->
+<!--    </style>-->
+
+
+    <style name="AppTheme" parent="Theme.MaterialComponents">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+
+    </style>
+
+    <style name="makingPoststyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/cardWhite</item>
+        <item name="boxStrokeColor">@color/cardBlack</item>
+        <item name="boxBackgroundColor">@color/cardWhite</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">1dp</item>
+        <item name="android:gravity">top|start</item>
+        <item name="android:layout_width">340dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:inputType">text</item>
+        <item name="hintTextColor">@color/cardBlack</item>
+        <item name="android:textSize">15dp</item>
+    </style>
+
+    <style name="AddingPosts" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/cardWhite</item>
+        <item name="boxStrokeColor">@color/cardWhite</item>
+        <item name="boxBackgroundColor">@color/cardText</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">1dp</item>
+        <item name="android:gravity">top|start</item>
+        <item name="android:layout_width">340dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:inputType">text</item>
+        <item name="hintTextColor">@color/cardWhite</item>
+        <item name="android:textSize">15dp</item>
+    </style>
+
+
+    <style name="NoBars" parent="Theme.MaterialComponents.Light.NoActionBar"/>
+
+<!--    Buttons-->
+    <style name="MyButtons" parent="Widget.AppCompat.Button">
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textColor">@color/cardWhite</item>
+        <item name="android:layout_width">340dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:background">@drawable/buttonbackground</item>
+    </style>
+
+<!--    Buttons for signing up with SocialMedia facebook-->
+    <style name="MyButtonSocialMediaFacebook" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/cardWhite</item>
+        <item name="android:layout_width">160dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:background">@drawable/btnfacebook</item>
+        <item name="android:text">@string/signup_with_facebook</item>
+        <item name="android:layout_marginRight">10dp</item>
+    </style>
+
+<!--    Buttons for signing up with SocialMedia Gmail-->
+    <style name="MyButtonSocialMediaGmail" parent="Widget.AppCompat.Button">
+        <item name="android:textColor">@color/cardWhite</item>
+        <item name="android:layout_width">160dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:background">@drawable/btngmail</item>
+        <item name="android:text">@string/signup_with_gmail</item>
+        <item name="android:layout_marginLeft">10dp</item>
+        <item name="android:layout_toRightOf">@id/signup_with_facebook</item>
+    </style>
+
+<!--  Holder of  Buttons for signing up with SocialMedia-->
+    <style name="HolderOfSocialMedia" parent="AppTheme">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_below">@id/signupButton</item>
+    </style>
+
+</resources>
