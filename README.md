@@ -3,7 +3,7 @@
 ###### in this project the Frontend is an Android App working as a RestClient 
 ### Structure
 
-#### Frontend
+#### Frontend-Android 
 
     python 3.6
     Splash Screen
@@ -13,6 +13,21 @@
     Viewpager-version 1 to work with the tablayout
     RecyclerView:-RecyclerView,RecyclerView Adapter,ViewHolders
 
+#### Frontend-Web
+
+    python 3.6
+    Splash Screen
+    Javascript
+    Html
+    jinja2
+    Django Models and Forms
+    
+
+#### Rest Web Api
+
+    python 3.6
+    Django-RestFramework
+    Class & Function based - Views
 
 
 #### Backend
@@ -55,4 +70,5 @@
     Developers.Android
     Coding in flow
     Pretty Printed
+    Thanks for the above for the guindance n teachin
 
