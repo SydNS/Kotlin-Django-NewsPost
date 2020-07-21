@@ -1,28 +1,36 @@
 # __Kotlin-Django-NewsPost__
 
 ###### in this project the Frontend is an Android App working as a RestClient 
-it consists of :-
-### __Frontend__
-Splash Screen
-Splash Animations:-Animation Alpha,Trannslate and Rotat
-Walkthrough Exhibition using Viewpager2,RecyclerView Adapter,Animated Layouts
-Tablayout for Tabs :- Fragment Pager Adapter
-Viewpager-version 1 to work with the tablayout
-RecyclerView:-RecyclerView,RecyclerView Adapter,ViewHolders
-### __Backend__
-Django Rest Framework
-Sqlite
-models
-serializers
-Request
-Mysql
+### Structure
 
-###__Prerequisites__
-python 3.6
-Django 3.0
-Android studio 3.0-4.0
-####with the following dependencies
-dependencies {
+#### Frontend
+
+    python 3.6
+    Splash Screen
+    Splash Animations:-Animation Alpha,Trannslate and Rotate
+    Walkthrough Exhibition using Viewpager2,RecyclerView Adapter,Animated Layouts
+    Tablayout for Tabs :- Fragment Pager Adapter
+    Viewpager-version 1 to work with the tablayout
+    RecyclerView:-RecyclerView,RecyclerView Adapter,ViewHolders
+
+
+
+#### Backend
+
+    python 3.6
+    Django Rest Framework
+    Sqlite
+    Request
+    Mysql
+
+#### Built With
+
+    python 3.6
+    Django 3.0
+    Android studio 3.0-4.0
+    
+    ####with the following dependencies
+    dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
     implementation 'androidx.core:core-ktx:1.3.0'
@@ -40,8 +48,9 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
 }
 
+   
 
-Acknowledgments
+##### Acknowledgments
 
     Developers.Android
     Coding in flow
