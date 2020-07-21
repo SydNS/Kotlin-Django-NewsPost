@@ -12,6 +12,8 @@
     Tablayout for Tabs :- Fragment Pager Adapter
     Viewpager-version 1 to work with the tablayout
     RecyclerView:-RecyclerView,RecyclerView Adapter,ViewHolders
+    Volley 
+    Picasso
 
 #### Frontend-Web
 
