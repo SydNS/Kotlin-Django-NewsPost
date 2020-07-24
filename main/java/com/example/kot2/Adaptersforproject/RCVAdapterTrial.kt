@@ -1,4 +1,4 @@
-package com.example.kot2.Activities
+package com.example.kot2.Adaptersforproject
 
 import android.app.Activity
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.kot2.R
 
-class RCVAdapter(val items: List<String>) : RecyclerView.Adapter<RCVAdapter.ViewHolder>() {
+class RCVAdapterTrial(val items: List<String>) : RecyclerView.Adapter<RCVAdapterTrial.ViewHolder>() {
 
     lateinit var mlistener: OnItemClickListener
     lateinit var ctx:Activity

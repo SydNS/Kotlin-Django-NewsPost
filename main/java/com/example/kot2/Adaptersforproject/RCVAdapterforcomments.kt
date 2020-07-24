@@ -1,5 +1,6 @@
-package com.example.kot2.Posts
+package com.example.kot2.Adaptersforproject
 
+import android.app.Activity
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
@@ -7,14 +8,16 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.kot2.Posts.ForRest
 import com.example.kot2.R
+import kotlinx.android.synthetic.main.commentrow.view.*
 import kotlinx.android.synthetic.main.forestapi.view.*
-import java.util.*
+import java.util.ArrayList
 
-class RestApiRCVA(
+class RCVAdapterforcomments(
     var context: Context,
-    var forRests: ArrayList<ForRest>
-) : RecyclerView.Adapter<RestApiRCVA.ViewHolder>() {
+    var forComments: ArrayList<ForComments>
+) : RecyclerView.Adapter<RCVAdapterforcomments.ViewHolder>() {
     var mylistener: OnItemClickListener? = null
 
     interface OnItemClickListener {
@@ -30,7 +33,7 @@ class RestApiRCVA(
         viewType: Int
     ): ViewHolder {
         val view: View =
-            LayoutInflater.from(context).inflate(R.layout.forestapi, parent, false)
+            LayoutInflater.from(context).inflate(R.layout.commentrow, parent, false)
         return ViewHolder(view)
     }
 
@@ -38,29 +41,27 @@ class RestApiRCVA(
         holder: ViewHolder,
         position: Int
     ) {
-        val forRest = forRests[position]
-        holder.post.text = forRest.post
-        holder.title.text = forRest.title
-        holder.author.text = forRest.author
-        holder.created.text = forRest.creationdate
+        val forComment = forComments[position]
+
+        holder.commentbody.text = forComment.body
+        holder.commentcreateddate.text = forComment.created
+        holder.commentorsname.text = forComment.name
     }
 
     override fun getItemCount(): Int {
-        return forRests.size
+        return forComments.size
     }
 
     inner class ViewHolder(itemView: View) :
         RecyclerView.ViewHolder(itemView) {
-        var author: TextView
-        var title: TextView
-        var post: TextView
-        var created: TextView
+        var commentcreateddate: TextView
+        var commentorsname: TextView
+        var commentbody: TextView
 
         init {
-            post = itemView.findViewById(R.id.post)
-            title = itemView.findViewById(R.id.title)
-            author = itemView.findViewById(R.id.author)
-            created = itemView.findViewById(R.id.cdate)
+            commentbody = itemView.findViewById(R.id.commentbody)
+            commentorsname = itemView.findViewById(R.id.commentorsname)
+            commentcreateddate = itemView.findViewById(R.id.commentcreateddate)
 
 //use the usual setOnClickListener and then use the interface & its methods
             itemView.setOnClickListener {
@@ -71,7 +72,7 @@ class RestApiRCVA(
                     }
                 }
             }
-            itemView.author.setOnClickListener {
+            itemView.commentorsname.setOnClickListener {
 //                have to create an interface with code to run on this event
 //                if (mylistener != null) {
 //                    val position = adapterPosition
@@ -79,9 +80,10 @@ class RestApiRCVA(
 //                        mylistener!!.OnClick(position)
 //                    }
 //                }
-                Toast.makeText(context,"your sup",Toast.LENGTH_LONG).show()
+                Toast.makeText(context, "your sup", Toast.LENGTH_LONG).show()
             }
         }
     }
+
 
 }

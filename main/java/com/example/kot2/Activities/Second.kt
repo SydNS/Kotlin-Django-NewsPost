@@ -4,12 +4,13 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.kot2.Adaptersforproject.RCVAdapterTrial
 import com.example.kot2.R
 import com.example.kot2.WalkThrough.WalkThrough
 import kotlinx.android.synthetic.main.activity_second.*
 
 
-class Second : AppCompatActivity(), RCVAdapter.OnItemClickListener {
+class Second : AppCompatActivity(), RCVAdapterTrial.OnItemClickListener {
     //    lateinit var tv:TextView
     private val items = listOf(
         "Mon 6/23 - Sunny - 31/17",
@@ -29,7 +30,7 @@ class Second : AppCompatActivity(), RCVAdapter.OnItemClickListener {
         var tv=tvsecond
         var smtxt = intent.getStringExtra("names")
         tv.text = "$smtxt"
-        val rcvAdapter= RCVAdapter(items)
+        val rcvAdapter= RCVAdapterTrial(items)
         recvitem.adapter=rcvAdapter
         recvitem.layoutManager=LinearLayoutManager(this)
         rcvAdapter.setOnItemClickListener(this)

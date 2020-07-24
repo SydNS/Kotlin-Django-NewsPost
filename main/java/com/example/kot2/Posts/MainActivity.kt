@@ -14,6 +14,7 @@ import com.android.volley.RequestQueue
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonArrayRequest
 import com.android.volley.toolbox.Volley
+import com.example.kot2.Adaptersforproject.RestApiRCVA
 import com.example.kot2.R
 import com.example.kot2.SharePreforproject.Uerdetails
 import org.json.JSONException
@@ -61,7 +62,10 @@ class MainActivity : AppCompatActivity(),
                             forRestArrayList!!.add(ForRest(title, post, author, creationDate, id))
                         }
                         val restApiRCVA =
-                            RestApiRCVA(this@MainActivity, forRestArrayList!!)
+                            RestApiRCVA(
+                                this@MainActivity,
+                                forRestArrayList!!
+                            )
                         recyclerView!!.adapter = restApiRCVA
                         val schoolslayoutManager =
                             LinearLayoutManager(this@MainActivity, RecyclerView.VERTICAL, false)
@@ -105,6 +109,8 @@ class MainActivity : AppCompatActivity(),
         val intent = Intent(applicationContext, PostDetails::class.java)
         val item = forRestArrayList!![position]
         intent.putExtra("postId", item.id)
+        intent.putExtra("postTitle", item.title)
+        intent.putExtra("postBody", item.post)
         startActivity(intent)
     }
 
