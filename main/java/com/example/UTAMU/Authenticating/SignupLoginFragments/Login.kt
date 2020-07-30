@@ -42,7 +42,7 @@ class Login : Fragment() {
             val uname = loginuname!!.editText!!.text.toString()
             val upasswd = loginpasswd!!.editText!!.text.toString()
             posting(uname, upasswd)
-            var unamepref= activity?.let { it1 -> Uerdetails(it1) }
+            val unamepref= activity?.let { it1 -> Uerdetails(it1) }
             unamepref?.save("Username",uname)
             if (rememberme.isChecked) {
                 Toast.makeText(activity, "You'll be remembered", Toast.LENGTH_SHORT).show()
@@ -52,7 +52,7 @@ class Login : Fragment() {
     }
 
     private fun posting(uname: String, upasword: String) {
-        var requestQueue = Volley.newRequestQueue(activity)
+        val requestQueue = Volley.newRequestQueue(activity)
         val parameters = JSONObject()
         try {
             parameters.put("username", uname)
@@ -67,12 +67,12 @@ class Login : Fragment() {
                 ROOT_URL_POST,
                 parameters,
                 Response.Listener { response ->
-                    var loggedin: String? = null
                     try {
-                        loggedin = response.getString("Message") as String
-                        if (loggedin == "logged in") {
+                        val loggedin = response.getString("token") as String
+                        if (loggedin.isNotEmpty()) {
                             Toast.makeText(activity, loggedin, Toast.LENGTH_SHORT).show()
-                            startActivity(Intent(activity, com.example.UTAMU.Activities.HomeActivity::class.java))
+                            startActivity(Intent(activity, HomeActivity::class.java))
+                            activity?.finish()
                         }
                     } catch (e: JSONException) {
                         e.printStackTrace()
@@ -87,6 +87,6 @@ class Login : Fragment() {
     }
 
     companion object {
-        private const val ROOT_URL_POST = "http://192.168.43.87:5000/WebIntApi/login/"
+        private const val ROOT_URL_POST = "http://192.168.43.87:5000/utamuapi/login/"
     }
 }

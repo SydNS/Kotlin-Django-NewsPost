@@ -46,6 +46,7 @@ class WalkThrough : AppCompatActivity() {
         }
         startbutton.setOnClickListener {
             startActivity(Intent(this, SignupLogin::class.java))
+            finish()
         }
         walkthroughvp.registerOnPageChangeCallback(object : OnPageChangeCallback() {
             override fun onPageScrolled(
@@ -71,10 +72,10 @@ class WalkThrough : AppCompatActivity() {
     }
 
     private fun skipbuttonvisility(position: Int) {
-        var skipstart = AnimationUtils.loadAnimation(this,
+        val skipstart = AnimationUtils.loadAnimation(this,
             R.anim.skipstart
         )
-        var startskip = AnimationUtils.loadAnimation(this,
+        val startskip = AnimationUtils.loadAnimation(this,
             R.anim.startskip
         )
         if (position == items.size - 1) {
