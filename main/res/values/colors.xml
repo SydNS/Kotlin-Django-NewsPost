@@ -14,4 +14,11 @@
     <color name="cardSuccess">#68C46C</color>
     <color name="cardRed">#F44336</color>
     <color name="cardBlue">#3F51B5</color>
+
+
+    <color name="colorWhite">#fff</color>
+    <color name="colorWhiteHint">#BDB5B5</color>
+    <color name="colorBlack">#000</color>
+    <color name="colorNavyBlue">#3F51B5</color>
+    <color name="colorWhiteGrey">#ADA6A6</color>
 </resources>

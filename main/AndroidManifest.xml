@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.kot2">
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.UTAMU">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <application
@@ -14,7 +15,7 @@
 
 
         <activity
-            android:name=".Activities.SplashScreen"
+            android:name="com.example.UTAMU.Activities.SplashScreen"
             android:theme="@style/NoBars">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -23,7 +24,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".WalkThrough.WalkThrough"
+            android:name="com.example.UTAMU.WalkThrough.WalkThrough"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,19 +34,19 @@
 
         </activity>
         <activity
-            android:name=".Activities.SignupLogin"
+            android:name="com.example.UTAMU.Activities.SignupLogin"
             android:theme="@style/NoBars" />
-        <activity android:name=".Activities.MainActivity" />
+        <activity android:name="com.example.UTAMU.Activities.Second" />
+        <activity android:name="com.example.UTAMU.Activities.VolKo" />
+        <activity android:name="com.example.UTAMU.Activities.AnotherActivity" />
         <activity
-            android:name=".Activities.Second"
-            android:parentActivityName=".Activities.MainActivity" />
-        <activity android:name=".Activities.VolKo" />
-        <activity android:name=".Activities.AnotherActivity" />
-        <activity android:name=".Posts.PostDetails" android:theme="@style/Theme.MaterialComponents.NoActionBar"
-            android:parentActivityName=".Posts.MainActivity"/>
-        <activity android:name=".Posts.AddPost" />
-        <activity android:name=".Posts.Detail" />
-        <activity android:name=".Posts.MainActivity" />
+            android:name="com.example.UTAMU.Posts.PostDetails"
+            android:parentActivityName="com.example.UTAMU.Posts.MainActivity"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar" />
+        <activity android:name="com.example.UTAMU.Posts.AddPost" />
+        <activity android:name="com.example.UTAMU.Posts.Detail" />
+        <activity android:name="com.example.UTAMU.Posts.MainActivity" />
+        <activity android:name=".Activities.HomeActivity" android:theme="@style/NoBars"/>
 
 
     </application>

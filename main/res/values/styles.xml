@@ -1,11 +1,11 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-<!--    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
-<!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
-<!--        <item name="colorPrimary">@color/colorPrimary</item>-->
-<!--        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
-<!--        <item name="colorAccent">@color/colorAccent</item>-->
-<!--    </style>-->
+    <!--    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">-->
+    <!--        &lt;!&ndash; Customize your theme here. &ndash;&gt;-->
+    <!--        <item name="colorPrimary">@color/colorPrimary</item>-->
+    <!--        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
+    <!--        <item name="colorAccent">@color/colorAccent</item>-->
+    <!--    </style>-->
 
 
     <style name="AppTheme" parent="Theme.MaterialComponents">
@@ -49,9 +49,9 @@
     </style>
 
 
-    <style name="NoBars" parent="Theme.MaterialComponents.Light.NoActionBar"/>
+    <style name="NoBars" parent="Theme.MaterialComponents.Light.NoActionBar" />
 
-<!--    Buttons-->
+    <!--    Buttons-->
     <style name="MyButtons" parent="Widget.AppCompat.Button">
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:textColor">@color/cardWhite</item>
@@ -61,7 +61,7 @@
         <item name="android:background">@drawable/buttonbackground</item>
     </style>
 
-<!--    Buttons for signing up with SocialMedia facebook-->
+    <!--    Buttons for signing up with SocialMedia facebook-->
     <style name="MyButtonSocialMediaFacebook" parent="Widget.AppCompat.Button">
         <item name="android:textColor">@color/cardWhite</item>
         <item name="android:layout_width">160dp</item>
@@ -73,7 +73,7 @@
         <item name="android:layout_marginRight">10dp</item>
     </style>
 
-<!--    Buttons for signing up with SocialMedia Gmail-->
+    <!--    Buttons for signing up with SocialMedia Gmail-->
     <style name="MyButtonSocialMediaGmail" parent="Widget.AppCompat.Button">
         <item name="android:textColor">@color/cardWhite</item>
         <item name="android:layout_width">160dp</item>
@@ -86,12 +86,49 @@
         <item name="android:layout_toRightOf">@id/signup_with_facebook</item>
     </style>
 
-<!--  Holder of  Buttons for signing up with SocialMedia-->
+    <!--  Holder of  Buttons for signing up with SocialMedia-->
     <style name="HolderOfSocialMedia" parent="AppTheme">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_centerHorizontal">true</item>
         <item name="android:layout_below">@id/signupButton</item>
     </style>
+
+
+    <!--    WalkhtroughPageImages styles-->
+    <style name="WalkhtroughPageImages">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:layout_centerInParent">true</item>
+    </style>
+    <!--    WalkhtroughPageTitle styles-->
+    <style name="WalkhtroughPageTitle">
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:layout_centerVertical">false</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">20dp</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textColor">@color/colorBlack</item>
+    </style>
+
+    <!--    WalkhtroughPageDesc styles-->
+    <style name="WalkhtroughPageDesc">
+        <item name="android:layout_margin">2dp</item>
+        <item name="android:paddingHorizontal" tools:ignore="NewApi">10dp</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:layout_width">350dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:textSize">15dp</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:fontFamily" tools:ignore="NewApi">sans-serif-light</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:textColor">@color/colorBlack</item>
+        <!--        <item name="android:fontFamily" tools:targetApi="jelly_bean">cursive</item>-->
+    </style>
+
 
 </resources>
