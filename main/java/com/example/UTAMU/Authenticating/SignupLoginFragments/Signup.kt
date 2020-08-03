@@ -62,17 +62,18 @@ class Signup : Fragment() {
             uemail = signup_uemail!!.editText!!.text.toString()
             residence = signup_residence!!.editText!!.text.toString()
 
-            if (firstname!!.isNotEmpty() or lastname!!.isNotEmpty() or residence!!.isNotEmpty() or upassd!!.isNotEmpty() or upassd2!!.isNotEmpty()) {
+            if (firstname!!.isNotEmpty() and lastname!!.isNotEmpty() and residence!!.isNotEmpty() and upassd!!.isNotEmpty() and upassd2!!.isNotEmpty() and uemail!!.isNotEmpty()) {
                 if (upassd == upassd2) {
                     posting(firstname!!, lastname!!, uemail!!, residence!!, upassd!!, upassd2!!)
+                    tabLayout.setScrollPosition(0, 0F, true)
+                    viewPager.currentItem = 0
                 } else {
                     Toast.makeText(activity, "Passwords dont match", Toast.LENGTH_SHORT).show()
                 }
 //                getChildFragmentManager().beginTransaction().replace(R.id.signuplayout, Login())
 //                    .commit()
 //                tabLayout.getTabAt(0)
-                tabLayout.setScrollPosition(0, 0F, true)
-                viewPager.currentItem = 0
+
 
             } else {
                 Toast.makeText(activity, "Fill in All the Fields", Toast.LENGTH_SHORT).show()
@@ -115,8 +116,8 @@ class Signup : Fragment() {
                     Toast.makeText(activity, response.toString(), Toast.LENGTH_LONG).show()
                     //                        startActivity(new Intent(getActivity(), MainActivity.class));
                 },
-                Response.ErrorListener {
-                    Toast.makeText(activity, "Connection Error", Toast.LENGTH_SHORT)
+                Response.ErrorListener {response ->
+                    Toast.makeText(activity, response.toString(), Toast.LENGTH_SHORT)
                         .show()
                 })
         requestQueue.add(jsonObjReq)
