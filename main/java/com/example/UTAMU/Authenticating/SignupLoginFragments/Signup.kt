@@ -33,6 +33,9 @@ class Signup : Fragment() {
     var upassd2: String? = null
     var uemail: String? = null
     var residence: String? = null
+    val tabLayout = activity!!.findViewById(R.id.tabs) as TabLayout
+    val viewPager = activity?.findViewById<View>(R.id.viewLoginandSignup) as ViewPager
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -50,8 +53,6 @@ class Signup : Fragment() {
         val signupButton =
             view.findViewById<View>(R.id.signupButton) as Button
 
-        val tabLayout = activity!!.findViewById(R.id.tabs) as TabLayout
-        val viewPager = activity?.findViewById<View>(R.id.viewLoginandSignup) as ViewPager
 
         signupButton.setOnClickListener {
 
@@ -65,8 +66,7 @@ class Signup : Fragment() {
             if (firstname!!.isNotEmpty() and lastname!!.isNotEmpty() and residence!!.isNotEmpty() and upassd!!.isNotEmpty() and upassd2!!.isNotEmpty() and uemail!!.isNotEmpty()) {
                 if (upassd == upassd2) {
                     posting(firstname!!, lastname!!, uemail!!, residence!!, upassd!!, upassd2!!)
-                    tabLayout.setScrollPosition(0, 0F, true)
-                    viewPager.currentItem = 0
+
                 } else {
                     Toast.makeText(activity, "Passwords dont match", Toast.LENGTH_SHORT).show()
                 }
@@ -115,6 +115,8 @@ class Signup : Fragment() {
                 Response.Listener { response ->
                     Toast.makeText(activity, response.toString(), Toast.LENGTH_LONG).show()
                     //                        startActivity(new Intent(getActivity(), MainActivity.class));
+                    tabLayout.setScrollPosition(0, 0F, true)
+                    viewPager.currentItem = 0
                 },
                 Response.ErrorListener {response ->
                     Toast.makeText(activity, response.toString(), Toast.LENGTH_SHORT)
