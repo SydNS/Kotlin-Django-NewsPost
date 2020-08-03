@@ -33,8 +33,8 @@ class Signup : Fragment() {
     var upassd2: String? = null
     var uemail: String? = null
     var residence: String? = null
-    val tabLayout = activity!!.findViewById(R.id.tabs) as TabLayout
-    val viewPager = activity?.findViewById<View>(R.id.viewLoginandSignup) as ViewPager
+
+
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -91,6 +91,8 @@ class Signup : Fragment() {
         upasword: String,
         upasword2: String
     ) {
+        val tabLayout = activity!!.findViewById(R.id.tabs) as TabLayout
+        val viewPager = activity?.findViewById<View>(R.id.viewLoginandSignup) as ViewPager
         val requestQueue = Volley.newRequestQueue(activity)
         val parameters = JSONObject()
         try {
