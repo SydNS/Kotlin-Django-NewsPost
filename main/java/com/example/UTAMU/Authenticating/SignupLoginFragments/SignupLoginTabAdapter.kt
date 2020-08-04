@@ -14,7 +14,7 @@ class SignupLoginTabAdapter(fm: FragmentManager) :
             1 -> return "SignUp"
         }
         return null
-    }
+}
 
     override fun getCount(): Int {
         return 2

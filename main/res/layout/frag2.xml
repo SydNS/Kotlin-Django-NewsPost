@@ -13,10 +13,6 @@
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:contentInsetStart="0dp"
-            android:contentInsetLeft="0dp"
-            android:contentInsetEnd="0dp"
-            android:contentInsetRight="0dp"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
 
             <RelativeLayout
@@ -30,12 +26,28 @@
                     app:layout_collapseMode="pin"
                     app:title="@string/app_name" />
 
-                <AdapterViewFlipper
+<!--                <AdapterViewFlipper-->
+<!--                    android:id="@+id/newsFlipper"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="200dp"-->
+<!--                    android:layout_below="@id/toolbar"-->
+<!--                    android:background="@color/colorWhiteGrey" />-->
+
+
+                <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/newsFlipper"
                     android:layout_width="match_parent"
                     android:layout_height="200dp"
                     android:layout_below="@id/toolbar"
-                    android:background="@color/colorWhiteGrey" />
+                    android:layout_marginTop="4dp"
+                    android:background="@color/colorWhiteGrey"/>
+
+<!--                    <com.google.android.material.tabs.TabLayout-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        app:tabBackground="@drawable/tab_selector"-->
+<!--                        app:tabGravity="center"-->
+<!--                        app:tabIndicatorHeight="0dp" />-->
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -84,7 +96,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="80dp"
                 android:gravity="center"
-                android:text="another one"
+                android:text="@string/anotherone"
                 android:textSize="20dp" />
 
             <com.google.android.material.tabs.TabLayout

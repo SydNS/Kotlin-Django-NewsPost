@@ -120,8 +120,8 @@ class Signup : Fragment() {
                     tabLayout.setScrollPosition(0, 0F, true)
                     viewPager.currentItem = 0
                 },
-                Response.ErrorListener {response ->
-                    Toast.makeText(activity, response.toString(), Toast.LENGTH_SHORT)
+                Response.ErrorListener {error ->
+                    Toast.makeText(activity, error.toString(), Toast.LENGTH_SHORT)
                         .show()
                 })
         requestQueue.add(jsonObjReq)
