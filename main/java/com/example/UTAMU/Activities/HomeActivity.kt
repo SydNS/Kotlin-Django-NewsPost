@@ -20,7 +20,7 @@ class HomeActivity : AppCompatActivity() {
         setContentView(R.layout.homeactivity)
         //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
 //        startActivity(new Intent(MainActivity.this,SplashIntro.class));
-        window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+//        window.setFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS,WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         supportFragmentManager.beginTransaction().replace(R.id.activitymain, FirstFragment())
             .commit()
         setTitle(R.string.app_name)
